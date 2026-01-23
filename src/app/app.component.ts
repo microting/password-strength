@@ -3,6 +3,7 @@ import {MatPasswordStrengthComponent} from '@microting/password-strength';
 import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 
 @Component({
+  standalone: false,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']

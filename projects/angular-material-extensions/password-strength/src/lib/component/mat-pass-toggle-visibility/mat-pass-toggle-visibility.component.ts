@@ -1,6 +1,7 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
 
 @Component({
+  standalone: false,
   selector: 'mat-pass-toggle-visibility',
   templateUrl: './mat-pass-toggle-visibility.component.html',
   styleUrls: ['./mat-pass-toggle-visibility.component.scss'],

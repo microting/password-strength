@@ -30,7 +30,7 @@ export function createTranslateLoader(http: HttpClient) {
     InitExampleComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,

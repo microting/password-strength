@@ -1,10 +1,11 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {MatLegacySlideToggleChange as MatSlideToggleChange} from '@angular/material/legacy-slide-toggle';
-import {MatLegacySnackBar as MatSnackBar} from '@angular/material/legacy-snack-bar';
+import {MatSlideToggleChange} from '@angular/material/slide-toggle';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
+  standalone: false,
   selector: 'app-getting-started',
   templateUrl: './getting-started.component.html',
   styleUrls: ['./getting-started.component.scss'],

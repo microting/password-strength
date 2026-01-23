@@ -4,6 +4,7 @@ import {animate, animateChild, keyframes, query, stagger, style, transition, tri
 import {shake} from '../../animations/index';
 
 @Component({
+  standalone: false,
   selector: 'mat-password-strength-info',
   exportAs: 'matPasswordStrengthInfo',
   templateUrl: './mat-password-strength-info.component.html',
