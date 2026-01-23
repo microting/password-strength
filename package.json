@@ -19,7 +19,6 @@
     "lint": "ng lint",
     "e2e": "cypress run",
     "e2e:open": "cypress open",
-    "e2e:ci": "start-server-and-test start http://localhost:4510 'cypress run'",
     "postinstall": "ngcc",
     "release": "release-it",
     "test:watch": "jest --watch",
