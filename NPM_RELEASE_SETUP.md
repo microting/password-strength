@@ -63,7 +63,9 @@ The workflow is triggered by tags matching the pattern `v*`:
 
 ## Package Version Synchronization
 
-**Important**: The version in the built package's `package.json` (`projects/angular-material-extensions/password-strength/package.json`) should match the git tag version. You need to:
+**Important**: The version in the built package's `package.json` (`projects/angular-material-extensions/password-strength/package.json`) must match the git tag version. The workflow includes an automatic validation step that will fail the release if versions don't match.
+
+Steps to create a release:
 
 1. Update the version in `projects/angular-material-extensions/password-strength/package.json`
 2. Commit the change

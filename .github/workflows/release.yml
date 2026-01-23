@@ -53,7 +53,6 @@ jobs:
 
     permissions:
       contents: read
-      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -69,6 +68,18 @@ jobs:
         with:
           name: built-library
           path: dist/angular-material-extensions/password-strength
+
+      - name: Verify version matches tag
+        run: |
+          TAG_VERSION=${GITHUB_REF#refs/tags/v}
+          PACKAGE_VERSION=$(node -p "require('./dist/angular-material-extensions/password-strength/package.json').version")
+          echo "Tag version: $TAG_VERSION"
+          echo "Package version: $PACKAGE_VERSION"
+          if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
+            echo "Error: Tag version (v$TAG_VERSION) does not match package.json version ($PACKAGE_VERSION)"
+            exit 1
+          fi
+          echo "Version match confirmed: $PACKAGE_VERSION"
 
       - name: Publish to npm
         run: npm publish ./dist/angular-material-extensions/password-strength --access public
