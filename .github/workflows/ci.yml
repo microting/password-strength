@@ -36,4 +36,4 @@ jobs:
         run: npx ng build
 
       - name: Test demo app
-        run: npx ng test --browsers=ChromeHeadlessCI --watch=false --code-coverage
+        run: npx ng test --karma-config=karma.conf.js --browsers=ChromeHeadlessCI --watch=false --code-coverage
