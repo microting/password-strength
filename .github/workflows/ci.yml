@@ -31,8 +31,8 @@ jobs:
       - name: Build demo app
         run: npx ng build
 
-      - name: Update webdriver
-        run: npx webdriver-manager update --versions.chrome=latest --gecko=false
+      - name: Update webdriver with Chrome for Testing
+        run: npx webdriver-manager update --versions.chrome=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+\.\d+') --gecko=false
 
       - name: Run E2E tests
         run: npm run e2e
