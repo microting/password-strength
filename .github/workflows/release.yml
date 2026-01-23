@@ -1,22 +1,26 @@
 # Release workflow for @microting/password-strength
 #
-# IMPORTANT: For the first release, you MUST manually publish to npmjs.com first!
+# CURRENT STATUS: Package exists on npm (v16.0.0), but OIDC needs configuration!
 # 
-# Why? OIDC Trusted Publishing requires the package to exist before configuration.
+# REQUIRED: Configure OIDC Trusted Publishing on npmjs.com
 # 
-# First-time setup steps:
-# 1. Push a version tag (e.g., v20.0.0) to trigger this workflow
-# 2. The workflow will build and test, but publishing will fail with instructions
-# 3. Download the 'built-library' artifact from the failed workflow run
-# 4. Manually publish: npm login && npm publish --access public
-# 5. Configure OIDC at https://www.npmjs.com/package/@microting/password-strength/access
-#    - Provider: GitHub Actions
+# Setup steps to enable automated publishing:
+# 1. Go to: https://www.npmjs.com/package/@microting/password-strength/access
+# 2. Log in with an account that has admin/maintainer access (renesmadsen)
+# 3. Scroll to "Publishing access" or "Trusted publishers" section
+# 4. Click "Add trusted publisher" or "Add publishing provider"
+# 5. Select "GitHub Actions" as the provider
+# 6. Enter these exact values:
 #    - Repository owner: microting
 #    - Repository name: password-strength
-#    - Workflow file: .github/workflows/release.yml
-# 6. Future releases will work automatically!
+#    - Workflow filename: .github/workflows/release.yml
+#    - Environment name: (leave blank)
+# 7. Click "Add" or "Save"
+# 8. Once configured, push a new tag to test: git tag v20.0.0 && git push origin v20.0.0
 #
-# See MANUAL_PUBLISH_GUIDE.md and NPM_RELEASE_SETUP.md for detailed instructions.
+# After OIDC configuration, this workflow will automatically publish to npm!
+#
+# See NPM_RELEASE_SETUP.md for detailed instructions with screenshots.
 
 name: Release
 
@@ -102,41 +106,33 @@ jobs:
           fi
           echo "Version match confirmed: $PACKAGE_VERSION"
 
-      - name: Check if package exists on npm
-        id: check-package
-        run: |
-          PACKAGE_NAME="@microting/password-strength"
-          if npm view "$PACKAGE_NAME" version &> /dev/null; then
-            echo "exists=true" >> $GITHUB_OUTPUT
-            echo "Package exists on npm registry"
-          else
-            echo "exists=false" >> $GITHUB_OUTPUT
-            echo "Package does not exist on npm registry"
-          fi
-
       - name: Publish to npm with provenance
-        if: steps.check-package.outputs.exists == 'true'
+        id: npm-publish
+        continue-on-error: true
         run: npm publish ./dist/microting/password-strength --access public --provenance
 
-      - name: Instructions for first-time publish
-        if: steps.check-package.outputs.exists == 'false'
+      - name: Check if OIDC needs configuration
+        if: steps.npm-publish.outcome == 'failure'
         run: |
-          echo "::error::Package @microting/password-strength does not exist on npmjs.com yet."
-          echo "::error::OIDC Trusted Publishing requires the package to exist first."
+          echo "::error::npm publish failed. This is likely because OIDC Trusted Publishing is not configured."
           echo "::error::"
-          echo "::error::Please follow these steps to complete the first publish:"
+          echo "::error::The package exists on npmjs.com, but OIDC authentication is not set up."
           echo "::error::"
-          echo "::error::1. Download the 'built-library' artifact from this workflow run"
-          echo "::error::2. Extract it and navigate to the directory"
-          echo "::error::3. Run: npm login"
-          echo "::error::4. Run: npm publish --access public"
-          echo "::error::5. Go to https://www.npmjs.com/package/@microting/password-strength/access"
-          echo "::error::6. Configure OIDC Trusted Publishing with:"
+          echo "::error::To fix this, configure OIDC Trusted Publishing on npmjs.com:"
+          echo "::error::"
+          echo "::error::1. Go to: https://www.npmjs.com/package/@microting/password-strength/access"
+          echo "::error::2. Log in with an account that has admin access to the package"
+          echo "::error::3. Scroll to 'Publishing access' or 'Trusted publishers' section"
+          echo "::error::4. Click 'Add trusted publisher'"
+          echo "::error::5. Select 'GitHub Actions' as the provider"
+          echo "::error::6. Enter the following configuration:"
           echo "::error::   - Repository owner: microting"
           echo "::error::   - Repository name: password-strength"
           echo "::error::   - Workflow file: .github/workflows/release.yml"
+          echo "::error::   - Environment: (leave blank)"
+          echo "::error::7. Click 'Add' to save"
           echo "::error::"
-          echo "::error::After completing these steps, future releases will work automatically."
+          echo "::error::After configuration, re-run this workflow or push a new tag."
           echo "::error::"
-          echo "::error::For detailed instructions, see: MANUAL_PUBLISH_GUIDE.md"
+          echo "::error::For detailed instructions, see: NPM_RELEASE_SETUP.md"
           exit 1
