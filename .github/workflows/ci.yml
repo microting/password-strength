@@ -34,3 +34,6 @@ jobs:
 
       - name: Build demo app
         run: npx ng build
+
+      - name: Test demo app
+        run: npx ng test --browsers=ChromeHeadlessCI --watch=false --code-coverage
