@@ -168,7 +168,7 @@
         }
       }
     },
-    "@angular-material-extensions/password-strength": {
+    "@microting/password-strength": {
       "projectType": "library",
       "root": "projects/angular-material-extensions/password-strength",
       "sourceRoot": "projects/angular-material-extensions/password-strength/src",

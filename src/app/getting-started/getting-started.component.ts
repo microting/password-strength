@@ -119,12 +119,12 @@ export class GettingStartedComponent implements OnInit {
   // 6
 
   systemJSModuleImport = `map: {
-  '@angular-material-extensions/password-strength': 'node_modules/@angular-material-extensions/password-strength/bundles/@angular-material-extensions/password-strength.umd.js',
+  '@microting/password-strength': 'node_modules/@microting/password-strength/bundles/@microting/password-strength.umd.js',
   }`;
 
-  importMatPasswordStrengthModule = `import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';`;
+  importMatPasswordStrengthModule = `import { MatPasswordStrengthModule } from '@microting/password-strength';`;
 
-  importMatPasswordStrengthModuleInAppModule = `import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+  importMatPasswordStrengthModuleInAppModule = `import { MatPasswordStrengthModule } from '@microting/password-strength';
                                               import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
                                               @NgModule({
@@ -139,7 +139,7 @@ export class GettingStartedComponent implements OnInit {
 
   importExample = this.importMatPasswordStrengthModuleInAppModule;
 
-  importMatPasswordStrengthModuleInOtherModule = `import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+  importMatPasswordStrengthModuleInOtherModule = `import { MatPasswordStrengthModule } from '@microting/password-strength';
 
                                                 @NgModule({
                                                   declarations: [OtherComponent, ...],

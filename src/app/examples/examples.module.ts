@@ -7,7 +7,7 @@ import {InfoCompExampleComponent} from './info-comp-example/info-comp-example.co
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {createTranslateLoader} from '../app.module';
-import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
+import {MatPasswordStrengthModule} from '@microting/password-strength';
 import {FormsModule} from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';

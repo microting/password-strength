@@ -6,7 +6,7 @@ import {ClipboardModule} from 'ngx-clipboard';
 import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {HIGHLIGHT_OPTIONS, HighlightModule} from 'ngx-highlightjs';
-import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
+import {MatPasswordStrengthModule} from '@microting/password-strength';
 import {FormsModule} from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatCardModule} from '@angular/material/card';
