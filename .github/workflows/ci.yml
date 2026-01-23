@@ -31,8 +31,5 @@ jobs:
       - name: Build demo app
         run: npx ng build
 
-      - name: Update webdriver
-        run: npx webdriver-manager update --gecko=false --standalone=false
-
       - name: Run E2E tests
-        run: npm run e2e
+        run: npm run e2e -- --webdriver-update=false
