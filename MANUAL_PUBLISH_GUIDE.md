@@ -1,10 +1,15 @@
 # Manual Publishing Guide for @microting/password-strength
 
+> **⚠️ IMPORTANT: This is a REQUIRED step for OIDC Trusted Publishing!**
+>
+> You MUST manually publish the first version before automated releases will work.
+> This is not optional - OIDC requires the package to exist on npmjs.com first.
+
 This guide explains how to manually publish the first version of `@microting/password-strength` to npmjs.com. After the first manual publish, all subsequent releases will be automated via GitHub Actions.
 
 ## Why Manual First Publish?
 
-OIDC Trusted Publishing requires the package to exist on npmjs.com before the trusted publisher configuration can be set up. Therefore, the first version (v16.0.0) must be published manually.
+OIDC Trusted Publishing **requires** the package to exist on npmjs.com before the trusted publisher configuration can be set up. The npm registry will reject OIDC authentication attempts for packages that don't exist yet.
 
 ## Prerequisites
 

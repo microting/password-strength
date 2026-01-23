@@ -1,3 +1,27 @@
+# Release workflow for @microting/password-strength
+#
+# CURRENT STATUS: Package exists on npm (v16.0.0), but OIDC needs configuration!
+# 
+# REQUIRED: Configure OIDC Trusted Publishing on npmjs.com
+# 
+# Setup steps to enable automated publishing:
+# 1. Go to: https://www.npmjs.com/package/@microting/password-strength/access
+# 2. Log in with an account that has admin/maintainer access (renesmadsen)
+# 3. Scroll to "Publishing access" or "Trusted publishers" section
+# 4. Click "Add trusted publisher" or "Add publishing provider"
+# 5. Select "GitHub Actions" as the provider
+# 6. Enter these exact values:
+#    - Repository owner: microting
+#    - Repository name: password-strength
+#    - Workflow filename: .github/workflows/release.yml
+#    - Environment name: (leave blank)
+# 7. Click "Add" or "Save"
+# 8. Once configured, push a new tag to test: git tag v20.0.0 && git push origin v20.0.0
+#
+# After OIDC configuration, this workflow will automatically publish to npm!
+#
+# See NPM_RELEASE_SETUP.md for detailed instructions with screenshots.
+
 name: Release
 
 on:
@@ -83,4 +107,32 @@ jobs:
           echo "Version match confirmed: $PACKAGE_VERSION"
 
       - name: Publish to npm with provenance
+        id: npm-publish
+        continue-on-error: true
         run: npm publish ./dist/microting/password-strength --access public --provenance
+
+      - name: Check if OIDC needs configuration
+        if: steps.npm-publish.outcome == 'failure'
+        run: |
+          echo "::error::npm publish failed. This is likely because OIDC Trusted Publishing is not configured."
+          echo "::error::"
+          echo "::error::The package exists on npmjs.com, but OIDC authentication is not set up."
+          echo "::error::"
+          echo "::error::To fix this, configure OIDC Trusted Publishing on npmjs.com:"
+          echo "::error::"
+          echo "::error::1. Go to: https://www.npmjs.com/package/@microting/password-strength/access"
+          echo "::error::2. Log in with an account that has admin access to the package"
+          echo "::error::3. Scroll to 'Publishing access' or 'Trusted publishers' section"
+          echo "::error::4. Click 'Add trusted publisher'"
+          echo "::error::5. Select 'GitHub Actions' as the provider"
+          echo "::error::6. Enter the following configuration:"
+          echo "::error::   - Repository owner: microting"
+          echo "::error::   - Repository name: password-strength"
+          echo "::error::   - Workflow file: .github/workflows/release.yml"
+          echo "::error::   - Environment: (leave blank)"
+          echo "::error::7. Click 'Add' to save"
+          echo "::error::"
+          echo "::error::After configuration, re-run this workflow or push a new tag."
+          echo "::error::"
+          echo "::error::For detailed instructions, see: NPM_RELEASE_SETUP.md"
+          exit 1

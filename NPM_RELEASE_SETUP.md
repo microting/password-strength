@@ -1,5 +1,10 @@
 # NPM Release Setup Instructions (OIDC Trusted Publishing)
 
+> **⚠️ CRITICAL: You MUST manually publish the first version before OIDC will work!**
+> 
+> The package must exist on npmjs.com before you can configure OIDC Trusted Publishing.
+> See the [First-Time Package Publishing](#first-time-package-publishing) section below.
+
 This document explains how to configure OIDC Trusted Publishing to enable automated npm package publishing via GitHub Actions.
 
 **OIDC Trusted Publishing** is the modern, secure way to publish npm packages from CI/CD systems. It eliminates the need for long-lived npm tokens by using short-lived credentials generated on each workflow execution.
