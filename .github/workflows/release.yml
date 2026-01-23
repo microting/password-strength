@@ -53,6 +53,7 @@ jobs:
 
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -81,7 +82,5 @@ jobs:
           fi
           echo "Version match confirmed: $PACKAGE_VERSION"
 
-      - name: Publish to npm
-        run: npm publish ./dist/angular-material-extensions/password-strength --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish to npm with provenance
+        run: npm publish ./dist/angular-material-extensions/password-strength --access public --provenance
