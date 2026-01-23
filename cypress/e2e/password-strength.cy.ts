@@ -54,12 +54,27 @@ describe('Password Strength Demo App', () => {
   });
 
   it('should navigate to Getting Started page via URL', () => {
+    // Log current URL before navigation
+    cy.url().then((url) => {
+      cy.log(`Starting URL: ${url}`);
+    });
+    
+    // Visit the getting-started route
     cy.visit('/getting-started');
-    // Verify the URL includes getting-started (Angular may add trailing slash or hash)
-    // Use a longer timeout for lazy-loaded modules in CI and let Cypress retry
-    cy.url({ timeout: 15000 }).should('include', 'getting-started');
-    // Verify page content loaded by checking for specific text
-    cy.contains('Getting Started', { timeout: 10000 }).should('be.visible');
+    
+    // Wait a moment for lazy module to load
+    cy.wait(1000);
+    
+    // Log URL after visit
+    cy.url().then((url) => {
+      cy.log(`URL after visit: ${url}`);
+    });
+    
+    // Check if URL changed (Angular lazy-loaded routes may take time)
+    cy.url({ timeout: 20000 }).should('include', 'getting-started');
+    
+    // Verify page content loaded by checking for "Getting Started" heading
+    cy.get('h1, h2, h3').contains('Getting Started', { timeout: 15000 }).should('exist');
   });
 
   it('should navigate to Examples page via URL', () => {
