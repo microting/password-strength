@@ -3,6 +3,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {MatRadioChange} from '@angular/material/radio';
 
 @Component({
+  standalone: false,
   selector: 'app-info-comp-example',
   templateUrl: './info-comp-example.component.html',
   styleUrls: ['./info-comp-example.component.scss']

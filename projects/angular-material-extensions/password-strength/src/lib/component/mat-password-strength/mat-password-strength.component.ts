@@ -18,6 +18,7 @@ import {ThemePalette} from '@angular/material/core';
 
 
 @Component({
+  standalone: false,
   selector: 'mat-password-strength',
   exportAs: 'matPasswordStrength',
   templateUrl: './mat-password-strength.component.html',

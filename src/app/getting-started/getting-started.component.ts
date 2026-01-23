@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
+  standalone: false,
   selector: 'app-getting-started',
   templateUrl: './getting-started.component.html',
   styleUrls: ['./getting-started.component.scss'],
