@@ -23,13 +23,13 @@
               and <a href="https://www.npmjs.com/package/npm" mat-button color="primary">npm</a> running on your machine.</p>
             
             <h3>Check Node.js version:</h3>
-            <pre><code [highlight]="'$ node -v'"></code></pre>
+            <pre><code [highlight]="'$ node -v'" language="bash"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="'node -v'" matTooltip="copy" (click)="showCopyMessage('node -v')">
               <mat-icon>content_copy</mat-icon>
             </button>
             
             <h3>Check npm version:</h3>
-            <pre><code [highlight]="'$ npm -v'"></code></pre>
+            <pre><code [highlight]="'$ npm -v'" language="bash"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="'npm -v'" matTooltip="copy" (click)="showCopyMessage('npm -v')">
               <mat-icon>content_copy</mat-icon>
             </button>
@@ -50,13 +50,13 @@
         <mat-card>
           <mat-card-content>
             <p>Check if <a href="https://cli.angular.io/" mat-button color="primary">Angular CLI</a> is installed:</p>
-            <pre><code [highlight]="'$ ng -v'"></code></pre>
+            <pre><code [highlight]="'$ ng -v'" language="bash"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="'ng -v'" matTooltip="copy" (click)="showCopyMessage('ng -v')">
               <mat-icon>content_copy</mat-icon>
             </button>
             
             <p>If not installed, run:</p>
-            <pre><code [highlight]="'$ npm install -g @angular/cli'"></code></pre>
+            <pre><code [highlight]="'$ npm install -g @angular/cli'" language="bash"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="'npm install -g @angular/cli'" matTooltip="copy" (click)="showCopyMessage('npm install -g @angular/cli')">
               <mat-icon>content_copy</mat-icon>
             </button>
@@ -75,13 +75,13 @@
         <mat-card>
           <mat-card-content>
             <p>Create a new Angular project:</p>
-            <pre><code [highlight]="'$ ng new yourappname'"></code></pre>
+            <pre><code [highlight]="'$ ng new yourappname'" language="bash"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="'ng new yourappname'" matTooltip="copy" (click)="showCopyMessage('ng new yourappname')">
               <mat-icon>content_copy</mat-icon>
             </button>
             
             <p>Navigate to your project:</p>
-            <pre><code [highlight]="'$ cd yourappname'"></code></pre>
+            <pre><code [highlight]="'$ cd yourappname'" language="bash"></code></pre>
           </mat-card-content>
         </mat-card>
       </mat-expansion-panel>
@@ -97,14 +97,14 @@
         <mat-card>
           <mat-card-content>
             <h3>Using npm:</h3>
-            <pre><code [highlight]="'$ npm install --save @angular-material-extensions/password-strength'"></code></pre>
+            <pre><code [highlight]="'$ npm install --save @angular-material-extensions/password-strength'" language="bash"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="'npm install --save @angular-material-extensions/password-strength'" matTooltip="copy" 
               (click)="showCopyMessage('npm install --save @angular-material-extensions/password-strength')">
               <mat-icon>content_copy</mat-icon>
             </button>
             
             <h3>Or using yarn:</h3>
-            <pre><code [highlight]="'$ yarn add @angular-material-extensions/password-strength'"></code></pre>
+            <pre><code [highlight]="'$ yarn add @angular-material-extensions/password-strength'" language="bash"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="'yarn add @angular-material-extensions/password-strength'" matTooltip="copy" 
               (click)="showCopyMessage('yarn add @angular-material-extensions/password-strength')">
               <mat-icon>content_copy</mat-icon>
@@ -124,7 +124,7 @@
         <mat-card>
           <mat-card-content>
             <p>Import the module in your app.module.ts:</p>
-            <pre><code [highlight]="importExample"></code></pre>
+            <pre><code [highlight]="importExample" language="typescript"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="importExample" matTooltip="copy" (click)="showCopyMessage('import code')">
               <mat-icon>content_copy</mat-icon>
             </button>
@@ -143,7 +143,7 @@
         <mat-card>
           <mat-card-content>
             <p>Add the component to your template:</p>
-            <pre><code [highlight]="usageExample"></code></pre>
+            <pre><code [highlight]="usageExample" language="typescript"></code></pre>
             <button mat-icon-button ngxClipboard [cbContent]="usageExample" matTooltip="copy" (click)="showCopyMessage('usage code')">
               <mat-icon>content_copy</mat-icon>
             </button>

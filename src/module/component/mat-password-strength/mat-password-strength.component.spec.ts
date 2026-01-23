@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {MatPasswordStrengthComponent} from './mat-password-strength.component';
-import {MatProgressBarModule} from '@angular/material';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {SimpleChange} from '@angular/core';
 import {NgxCombinationGeneratorService} from 'ngx-combination-generator';
 import {Colors} from '../../enum/colors.enum';
@@ -39,7 +39,7 @@ describe('PasswordStrengthComponent', () => {
   });
 
   it('should not calculate the strength of the password', () => {
-    const calculatePasswordStrengthSpy = jest.spyOn(component, 'calculatePasswordStrength');
+    const calculatePasswordStrengthSpy = spyOn(component, 'calculatePasswordStrength');
     component.password = 'testPass';
     component.externalError = true;
     component.ngOnChanges({
@@ -52,7 +52,7 @@ describe('PasswordStrengthComponent', () => {
   });
 
   it('should not calculate the strength of the password when externalError is provided', () => {
-    const calculatePasswordStrengthSpy = jest.spyOn(component, 'calculatePasswordStrength');
+    const calculatePasswordStrengthSpy = spyOn(component, 'calculatePasswordStrength');
     component.password = 'testPass123!';
     component.externalError = true;
     component.ngOnChanges({
@@ -66,7 +66,7 @@ describe('PasswordStrengthComponent', () => {
   });
 
   it('should calculate the strength of the password', () => {
-    const calculatePasswordStrengthSpy = jest.spyOn(component, 'calculatePasswordStrength');
+    const calculatePasswordStrengthSpy = spyOn(component, 'calculatePasswordStrength');
     component.password = 'testPass2';
     component.externalError = true;
     component.ngOnChanges({
@@ -77,7 +77,7 @@ describe('PasswordStrengthComponent', () => {
   });
 
   it('should calculate the strength of the password on int if the password is provided', () => {
-    const calculatePasswordStrengthSpy = jest.spyOn(component, 'calculatePasswordStrength');
+    const calculatePasswordStrengthSpy = spyOn(component, 'calculatePasswordStrength');
     component.password = '#A2lsam,#af21af1!';
     component.ngOnInit();
     fixture.detectChanges();
@@ -85,7 +85,7 @@ describe('PasswordStrengthComponent', () => {
   });
 
   it('should calculate the strength of the password when password is directly provided', () => {
-    const calculatePasswordStrengthSpy = jest.spyOn(component, 'calculatePasswordStrength');
+    const calculatePasswordStrengthSpy = spyOn(component, 'calculatePasswordStrength');
     component.password = 'testPass3';
     component.externalError = false;
     component.ngOnChanges({
@@ -96,7 +96,7 @@ describe('PasswordStrengthComponent', () => {
   });
 
   it('should have min input', () => {
-    const calculatePasswordStrengthSpy = jest.spyOn(component, 'calculatePasswordStrength');
+    const calculatePasswordStrengthSpy = spyOn(component, 'calculatePasswordStrength');
     component.ngOnInit();
     // default values
     expect(component.min).toEqual(8);
@@ -215,7 +215,7 @@ describe('PasswordStrengthComponent', () => {
     });
 
   it('should not validate custom regexp', () => {
-    const parseCustomValidatorsRegexSpy = jest.spyOn(component, 'parseCustomValidatorsRegex');
+    const parseCustomValidatorsRegexSpy = spyOn(component, 'parseCustomValidatorsRegex');
     const charsList = ['a', 'B', '1', '!', 'sdkg', 'ä'];
     const combinations = generator.loadCombinationList(charsList, 5, 5, true);
 
@@ -230,7 +230,7 @@ describe('PasswordStrengthComponent', () => {
   });
 
   it('should validate custom regexp', () => {
-    const parseCustomValidatorsRegexSpy = jest.spyOn(component, 'parseCustomValidatorsRegex');
+    const parseCustomValidatorsRegexSpy = spyOn(component, 'parseCustomValidatorsRegex');
     const charsList = ['a', 'B', '1', '!', 'sdkg', 'ä'];
     component.password = 'Ad1ds?ßüöääÄ';
     component.customValidator = new RegExp(/^(?=.*?[äöüÄÖÜß])/);
