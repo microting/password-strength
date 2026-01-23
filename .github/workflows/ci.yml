@@ -31,31 +31,11 @@ jobs:
       - name: Build demo app
         run: npx ng build
 
-      - name: Setup Chrome and ChromeDriver
-        run: |
-          # Get Chrome major version
-          CHROME_VERSION=$(google-chrome --version | grep -oE '[0-9]+' | head -1)
-          echo "Chrome major version: $CHROME_VERSION"
-          
-          # Download matching ChromeDriver from Chrome for Testing API
-          echo "Fetching ChromeDriver download URL from Chrome for Testing API..."
-          CHROMEDRIVER_URL=$(curl -s "https://googlechromelabs.github.io/chrome-for-testing/latest-versions-per-milestone-with-downloads.json" | \
-            jq -r ".milestones.\"$CHROME_VERSION\".downloads.chromedriver[] | select(.platform==\"linux64\") | .url" | head -1)
-          
-          if [ -z "$CHROMEDRIVER_URL" ]; then
-            echo "Error: Could not find ChromeDriver for Chrome version $CHROME_VERSION"
-            exit 1
-          fi
-          
-          echo "Downloading ChromeDriver from: $CHROMEDRIVER_URL"
-          curl -L -o /tmp/chromedriver.zip "$CHROMEDRIVER_URL"
-          
-          # Extract and install
-          unzip -o /tmp/chromedriver.zip -d /tmp/
-          sudo mv /tmp/chromedriver-linux64/chromedriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
-          echo "ChromeDriver installed:"
-          chromedriver --version
-
-      - name: Run E2E tests
-        run: npm run e2e
+      - name: Run Cypress E2E tests
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          wait-on: 'http://localhost:4510'
+          wait-on-timeout: 120
+          browser: chrome
+          headed: false
