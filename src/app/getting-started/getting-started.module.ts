@@ -4,7 +4,7 @@ import {GettingStartedComponent} from './getting-started.component';
 import {GettingStartedRoutingModule} from './getting-started-routing.module';
 import {ClipboardModule} from 'ngx-clipboard';
 import {MatIconModule} from '@angular/material/icon';
-import {MatPagesModule} from '@angular-material-extensions/pages';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {HIGHLIGHT_OPTIONS, HighlightModule} from 'ngx-highlightjs';
 import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
 import {FormsModule} from '@angular/forms';
@@ -34,7 +34,7 @@ export function getHighlightLanguages() {
     GettingStartedRoutingModule,
     HighlightModule,
     MatPasswordStrengthModule,
-    MatPagesModule,
+    MatExpansionModule,
     ClipboardModule,
     MatCardModule,
     MatIconModule,

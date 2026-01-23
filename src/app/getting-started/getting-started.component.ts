@@ -137,6 +137,8 @@ export class GettingStartedComponent implements OnInit {
                                               export class AppModule {
                                               }`;
 
+  importExample = this.importMatPasswordStrengthModuleInAppModule;
+
   importMatPasswordStrengthModuleInOtherModule = `import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
                                                 @NgModule({
@@ -161,6 +163,8 @@ export class GettingStartedComponent implements OnInit {
               <mat-password-strength #passwordComponent
                                               [password]="password.value">
               </mat-password-strength>`;
+
+  usageExample = this.example;
 
   password: string;
   inputType = 'password';

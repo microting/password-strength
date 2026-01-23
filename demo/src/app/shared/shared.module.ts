@@ -17,6 +17,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatExpansionModule} from '@angular/material/expansion';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -27,7 +28,6 @@ import {TranslateModule} from '@ngx-translate/core';
 import typescript from 'highlight.js/lib/languages/typescript';
 import scss from 'highlight.js/lib/languages/scss';
 import xml from 'highlight.js/lib/languages/xml';
-import {MatPagesModule} from '@angular-material-extensions/pages';
 
 export function hljsLanguages() {
   return [
@@ -42,7 +42,6 @@ export function hljsLanguages() {
     RouterModule,
     NgbCollapseModule.forRoot(),
     MatPasswordStrengthModule.forRoot(),
-    MatPagesModule.forRoot(),
     DisqusModule.forRoot('mat-password-strength'),
     HighlightModule.forRoot({
       languages: hljsLanguages
@@ -61,7 +60,8 @@ export function hljsLanguages() {
     MatButtonModule,
     MatToolbarModule,
     MatTabsModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule
   ],
   exports: [
     TranslateModule,
@@ -69,7 +69,6 @@ export function hljsLanguages() {
     FooterComponent,
     ContentWrapperComponent,
     MatPasswordStrengthModule,
-    MatPagesModule,
     DisqusModule,
     HighlightModule,
     FormsModule,
@@ -87,6 +86,7 @@ export function hljsLanguages() {
     MatToolbarModule,
     MatTabsModule,
     MatListModule,
+    MatExpansionModule
   ],
   declarations: [HeaderComponent, FooterComponent, ContentWrapperComponent],
   providers: [],
