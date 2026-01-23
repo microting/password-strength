@@ -21,11 +21,10 @@ describe('Password Strength Demo App', () => {
     cy.get('mat-password-strength').should('exist');
   });
 
-  it('should have navigation links', () => {
-    // Verify main navigation elements exist
+  it('should have toolbar with app name', () => {
+    // Verify main toolbar exists with app title
     cy.get('mat-toolbar').should('exist');
-    cy.contains('Getting Started').should('exist');
-    cy.contains('Examples').should('exist');
+    cy.get('.toolbar').should('contain.text', '@angular-material-extensions/password-strength');
   });
 
   it('should allow password input', () => {
@@ -53,19 +52,30 @@ describe('Password Strength Demo App', () => {
     // You might want to check for specific classes or colors indicating strong strength
   });
 
-  it('should navigate to Getting Started page', () => {
-    cy.contains('Getting Started').click();
+  it('should navigate to Getting Started page via URL', () => {
+    cy.visit('/getting-started');
     cy.url().should('include', '/getting-started');
+    // Wait for lazy-loaded module
+    cy.get('app-getting-started', { timeout: 10000 }).should('exist');
   });
 
-  it('should navigate to Examples page', () => {
-    cy.contains('Examples').click();
+  it('should navigate to Examples page via URL', () => {
+    cy.visit('/examples');
     cy.url().should('include', '/examples');
+    // Wait for lazy-loaded module
+    cy.get('app-examples', { timeout: 10000 }).should('exist');
   });
 
-  it('should display password strength criteria', () => {
-    // Verify that password criteria/rules are displayed
-    cy.get('mat-password-strength-info').should('exist');
+  it('should display password strength criteria when toggled', () => {
+    // The mat-password-strength-info is initially hidden behind a toggle
+    // First verify the toggle exists
+    cy.contains('Show Password Details').should('exist');
+    
+    // Click the toggle to show details
+    cy.contains('Show Password Details').parent('mat-slide-toggle').click();
+    
+    // Now verify password strength info appears
+    cy.get('mat-password-strength-info', { timeout: 5000 }).should('exist');
   });
 
   it('should update strength on password change', () => {
@@ -84,13 +94,18 @@ describe('Password Strength Demo App', () => {
     cy.get('mat-password-strength').should('be.visible');
   });
 
-  it('should show/hide password toggle if available', () => {
-    // Check if password visibility toggle exists and works
-    cy.get('button[aria-label*="password"]').then(($btn) => {
-      if ($btn.length > 0) {
-        $btn.first().click();
-        cy.get('input[type="text"]').should('exist');
-      }
-    });
+  it('should have password visibility toggle', () => {
+    // The mat-pass-toggle-visibility component provides password show/hide
+    cy.get('mat-pass-toggle-visibility').should('exist');
+    
+    // Click the toggle icon to show password
+    cy.get('mat-pass-toggle-visibility button').first().click();
+    
+    // After clicking, the input type should change from password to text
+    cy.get('input[type="text"]').should('exist');
+    
+    // Click again to hide
+    cy.get('mat-pass-toggle-visibility button').first().click();
+    cy.get('input[type="password"]').should('exist');
   });
 });
