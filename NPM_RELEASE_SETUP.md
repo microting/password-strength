@@ -15,7 +15,7 @@ This document explains how to configure OIDC Trusted Publishing to enable automa
 
 1. **NPM Account**: You must have an npm account at [npmjs.com](https://npmjs.com)
 2. **Organization Membership**: Your npm account must be a member of the `microting` organization on npmjs.com
-3. **Package Access**: Ensure the organization has access to publish packages under the `@angular-material-extensions` scope
+3. **Package Access**: Ensure the organization has access to publish packages under the `@microting` scope
 4. **NPM CLI Version**: The workflow uses Node.js 22.x which includes npm 10.x (compatible with OIDC)
 
 ## Required Setup on npmjs.com
@@ -26,7 +26,7 @@ This document explains how to configure OIDC Trusted Publishing to enable automa
 
 2. **Navigate to Package Settings**:
    - If the package doesn't exist yet, you'll configure this after the first manual publish
-   - For existing packages: Go to `https://www.npmjs.com/package/@angular-material-extensions/password-strength/access`
+   - For existing packages: Go to `https://www.npmjs.com/package/@microting/password-strength/access`
 
 3. **Add GitHub Actions as a Trusted Publisher**:
    - Click on "Publishing access" or "Trusted publishers" section
@@ -45,14 +45,14 @@ This document explains how to configure OIDC Trusted Publishing to enable automa
 
 ### First-Time Package Publishing
 
-If the package `@angular-material-extensions/password-strength` doesn't exist on npmjs.com yet, you'll need to:
+If the package `@microting/password-strength` doesn't exist on npmjs.com yet, you'll need to:
 
 1. **Publish the first version manually** (one-time only):
    ```bash
    cd /path/to/repository
    npm install --legacy-peer-deps
    npm run build:lib
-   cd dist/angular-material-extensions/password-strength
+   cd dist/microting/password-strength
    npm publish --access public
    ```
 
@@ -79,7 +79,7 @@ Once the manual setup is complete, creating a release is simple:
    - Verify the version matches the tag
    - Authenticate using OIDC (no token needed!)
    - Publish with automatic provenance attestation
-   - The package will be available at: `https://www.npmjs.com/package/@angular-material-extensions/password-strength`
+   - The package will be available at: `https://www.npmjs.com/package/@microting/password-strength`
 
 ## Provenance and Supply Chain Security
 

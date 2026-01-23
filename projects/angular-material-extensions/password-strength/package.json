@@ -1,5 +1,5 @@
 {
-  "name": "@angular-material-extensions/password-strength",
+  "name": "@microting/password-strength",
   "description": "Material password strength meter to indicate how secure is the provided password",
   "version": "16.0.0",
   "homepage": "https://github.com/angular-material-extensions/password-strength",

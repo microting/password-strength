@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: built-library
-          path: dist/angular-material-extensions/password-strength
+          path: dist/microting/password-strength
           retention-days: 1
 
   publish-npm:
@@ -68,12 +68,12 @@ jobs:
         uses: actions/download-artifact@v4.1.3
         with:
           name: built-library
-          path: dist/angular-material-extensions/password-strength
+          path: dist/microting/password-strength
 
       - name: Verify version matches tag
         run: |
           TAG_VERSION=${GITHUB_REF#refs/tags/v}
-          PACKAGE_VERSION=$(node -p "require('./dist/angular-material-extensions/password-strength/package.json').version")
+          PACKAGE_VERSION=$(node -p "require('./dist/microting/password-strength/package.json').version")
           echo "Tag version: $TAG_VERSION"
           echo "Package version: $PACKAGE_VERSION"
           if [ "$TAG_VERSION" != "$PACKAGE_VERSION" ]; then
@@ -83,4 +83,4 @@ jobs:
           echo "Version match confirmed: $PACKAGE_VERSION"
 
       - name: Publish to npm with provenance
-        run: npm publish ./dist/angular-material-extensions/password-strength --access public --provenance
+        run: npm publish ./dist/microting/password-strength --access public --provenance
