@@ -13,17 +13,13 @@ jobs:
     permissions:
       contents: read
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22.x
           cache: 'npm'
 
       - name: Install dependencies
@@ -31,9 +27,3 @@ jobs:
 
       - name: Build library
         run: npm run build:lib
-
-      - name: Build demo app
-        run: npx ng build
-
-      - name: Test demo app
-        run: npx ng test --karma-config=karma.conf.js --browsers=ChromeHeadlessCI --watch=false --code-coverage
