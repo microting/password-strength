@@ -1,0 +1,76 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build library
+        run: npm run build:lib
+
+      - name: Build demo app
+        run: npx ng build
+
+      - name: Run Cypress E2E tests
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          start: npm start
+          wait-on: 'http://localhost:4510'
+          wait-on-timeout: 120
+          browser: chrome
+          headed: false
+
+      - name: Upload built library
+        uses: actions/upload-artifact@v4
+        with:
+          name: built-library
+          path: dist/angular-material-extensions/password-strength
+          retention-days: 1
+
+  publish-npm:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download built library
+        uses: actions/download-artifact@v4
+        with:
+          name: built-library
+          path: dist/angular-material-extensions/password-strength
+
+      - name: Publish to npm
+        run: npm publish ./dist/angular-material-extensions/password-strength --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
