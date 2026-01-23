@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPasswordStrengthComponent} from '@angular-material-extensions/password-strength';
+import {MatPasswordStrengthComponent} from '@microting/password-strength';
 import {UntypedFormControl, UntypedFormGroup} from '@angular/forms';
 
 @Component({
