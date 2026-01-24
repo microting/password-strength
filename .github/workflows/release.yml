@@ -45,8 +45,8 @@ jobs:
           node-version: 22.x
           cache: 'npm'
 
-      - name: Update npm to latest stable version for Node 22
-        run: npm install -g npm@10.9.4
+      - name: Update npm to latest version (required for OIDC publishing)
+        run: npm install -g npm@11.8.0
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
@@ -91,8 +91,8 @@ jobs:
           node-version: 22.x
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Update npm to latest stable version for Node 22
-        run: npm install -g npm@10.9.4
+      - name: Update npm to latest version (required for OIDC publishing)
+        run: npm install -g npm@11.8.0
 
       - name: Download built library
         uses: actions/download-artifact@v4.1.3
